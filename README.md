@@ -20,7 +20,7 @@ Add `slider_bar_chart` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  slider_bar_chart: ^0.0.1
+  slider_bar_chart: ^0.0.2
 ```
 
 ## 🛠️ Usage
@@ -64,6 +64,8 @@ SliderBarChartWidget(
             padding: EdgeInsets.all(15.0),
             yTextFormatter: null,
             y2TextFormatter: null,
+            border: null,
+            borderRadius: 14
         ),
         barDecoration: SbcBarDecoration(
             barWidth: 15.0,

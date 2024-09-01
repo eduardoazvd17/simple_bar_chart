@@ -8,6 +8,8 @@ class SbcTooltipDecoration {
   final EdgeInsets padding;
   final String Function(int x, double y)? yTextFormatter;
   final String Function(int x, double y)? y2TextFormatter;
+  final Border? border;
+  final double borderRadius;
 
   const SbcTooltipDecoration({
     this.backgroundColor,
@@ -16,5 +18,7 @@ class SbcTooltipDecoration {
     this.padding = const EdgeInsets.all(15),
     this.yTextFormatter,
     this.y2TextFormatter,
+    this.border,
+    this.borderRadius = 14,
   });
 }

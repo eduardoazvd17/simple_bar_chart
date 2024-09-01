@@ -290,10 +290,10 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: Colors.grey,
+        borderRadius: BorderRadius.circular(
+          widget.decoration.tooltipDecoration.borderRadius,
         ),
+        border: widget.decoration.tooltipDecoration.border,
       ),
       child: AnimatedSize(
         duration: const Duration(milliseconds: 300),
