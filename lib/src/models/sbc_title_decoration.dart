@@ -1,4 +1,4 @@
-import 'package:simple_bar_chart/src/enums/y_title_position.dart';
+import 'package:slider_bar_chart/src/enums/y_title_position.dart';
 
 /// Title decoration settings for the bar chart.
 class SbcTitleDecoration {

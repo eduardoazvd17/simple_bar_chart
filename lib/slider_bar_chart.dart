@@ -1,4 +1,4 @@
-library simple_bar_chart;
+library slider_bar_chart;
 
 export 'src/enums/enums.dart';
 export 'src/models/models.dart';

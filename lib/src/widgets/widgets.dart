@@ -1,1 +1,1 @@
-export 'simple_bar_chart_widget.dart';
+export 'slider_bar_chart_widget.dart';

@@ -4,7 +4,7 @@ import '../enums/enums.dart';
 import '../models/models.dart';
 
 /// A widget that displays a simple bar chart with customizable decorations.
-class SimpleBarChartWidget extends StatefulWidget {
+class SliderBarChartWidget extends StatefulWidget {
   /// The data used to generate the bar chart.
   final SbcData data;
 
@@ -13,7 +13,7 @@ class SimpleBarChartWidget extends StatefulWidget {
 
   /// Optional scroll controller for the horizontal scroll view.
   final ScrollController? scrollController;
-  const SimpleBarChartWidget({
+  const SliderBarChartWidget({
     super.key,
     required this.data,
     this.decoration = const SbcDecoration(),
@@ -21,10 +21,10 @@ class SimpleBarChartWidget extends StatefulWidget {
   });
 
   @override
-  State<SimpleBarChartWidget> createState() => _SimpleBarChartWidgetState();
+  State<SliderBarChartWidget> createState() => _SliderBarChartWidgetState();
 }
 
-class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
+class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
   late final ScrollController _scrollController;
 
   @override

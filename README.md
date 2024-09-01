@@ -1,10 +1,10 @@
-# 📊 Simple Bar Chart
+# 📊 Slider Bar Chart
 <div style="display: flex;">
   <img src="screenshots/1.png" alt="Screenshot 1" style="max-height: 300px; margin-right: 10px;">
   <img src="screenshots/2.png" alt="Screenshot 2" style="max-height: 300px;">
 </div>
 <br>
-**Simple Bar Chart** is a lightweight and customizable Flutter library for creating simple bar charts. Ideal for visually comparing data in an elegant and minimalistic way.
+**Slider Bar Chart** is a lightweight and customizable Flutter library for creating simple bar charts. Ideal for visually comparing data in an elegant and minimalistic way.
 
 ## 🌟 Features
 
@@ -16,25 +16,25 @@
 
 ## 🚀 Installation
 
-Add `simple_bar_chart` to your `pubspec.yaml`:
+Add `slider_bar_chart` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  simple_bar_chart: ^0.0.1
+  slider_bar_chart: ^0.0.1
 ```
 
 ## 🛠️ Usage
 
 ### Basic Example
-Import **simple_bar_chart** into your dart file:
+Import **slider_bar_chart** into your dart file:
 ```dart
-import 'package:simple_bar_chart/simple_bar_chart.dart';
+import 'package:slider_bar_chart/slider_bar_chart.dart';
 ```
 
-Create a **SimpleBarChartWidget** instance:
+Create a **SliderBarChartWidget** instance:
 ```dart
-SimpleBarChartWidget(
-    data: SimpleBarChartData(
+SliderBarChartWidget(
+    data: SbcData(
         xValues: List.generate(100, (index) => index),
         yValues: List.generate(
             100, (index) => Random().nextDouble() * 256),
@@ -44,7 +44,7 @@ SimpleBarChartWidget(
 
 Control the overall layout of the chart, including height, titles, bars, and tooltips:
 ```dart
-SimpleBarChartWidget(
+SliderBarChartWidget(
     decoration: SbcDecoration(
         height: 300.0, 
         showScrollbar: true, 

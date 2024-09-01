@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:simple_bar_chart/simple_bar_chart.dart';
+import 'package:slider_bar_chart/slider_bar_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Text('With single y values'),
-                  SimpleBarChartWidget(
+                  SliderBarChartWidget(
                     data: SbcData(
                       xValues: List.generate(100, (index) => index),
                       yValues: List.generate(
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                   ),
                   const Divider(height: 100),
                   const Text('With double y values'),
-                  SimpleBarChartWidget(
+                  SliderBarChartWidget(
                     data: SbcData(
                       xValues: List.generate(100, (index) => index),
                       yValues: List.generate(
