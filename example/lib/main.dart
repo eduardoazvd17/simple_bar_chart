@@ -25,13 +25,6 @@ class MyApp extends StatelessWidget {
                 children: [
                   const Text('With single y values'),
                   SimpleBarChartWidget(
-                    decoration: const SimpleBarChartDecoration(
-                      titleDecoration: SimpleBarChartTitleDecoration(
-                        fixedYTitles: true,
-                        yTitlePosition: YTitlePosition.start,
-                      ),
-                      singleBarPosition: SingleBarWidgetPosition.bottom,
-                    ),
                     data: SimpleBarChartData(
                       xValues: List.generate(100, (index) => index),
                       yValues: List.generate(
