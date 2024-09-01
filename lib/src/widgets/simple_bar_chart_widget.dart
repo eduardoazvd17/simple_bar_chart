@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/simple_bar_chart_data.dart';
-import '../models/simple_bar_chart_decoration.dart';
+import '../models/models.dart';
 
 class SimpleBarChartWidget extends StatefulWidget {
   final SimpleBarChartData data;
