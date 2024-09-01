@@ -57,14 +57,16 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
           if (widget.decoration.titleDecoration.showYTitles &&
               widget.decoration.titleDecoration.fixedYTitles &&
               widget.decoration.titleDecoration.yTitlePosition !=
-                  YTitlePosition.end)
+                  YTitlePosition.end) ...[
             Padding(
-              padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: SizedBox(
                 height: widget.decoration.height - 30,
                 child: _yTitles,
               ),
             ),
+            const VerticalDivider(thickness: 0.7, width: 0),
+          ],
           Expanded(
             child: Scrollbar(
               thumbVisibility: widget.decoration.showScrollbar,
@@ -73,8 +75,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                 controller: widget.scrollController ?? _scrollController,
                 scrollDirection: Axis.horizontal,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(
                     children: [
                       if (widget.decoration.titleDecoration.showYTitles &&
@@ -82,7 +83,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                           widget.decoration.titleDecoration.yTitlePosition !=
                               YTitlePosition.end)
                         Padding(
-                          padding: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.only(right: 10),
                           child: SizedBox(
                             height: widget.decoration.height - 30,
                             child: _yTitles,
@@ -104,7 +105,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                           widget.decoration.titleDecoration.yTitlePosition !=
                               YTitlePosition.start)
                         Padding(
-                          padding: const EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 10),
                           child: SizedBox(
                             height: widget.decoration.height - 30,
                             child: _yTitles,
@@ -119,7 +120,8 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
           if (widget.decoration.titleDecoration.showYTitles &&
               widget.decoration.titleDecoration.fixedYTitles &&
               widget.decoration.titleDecoration.yTitlePosition !=
-                  YTitlePosition.start)
+                  YTitlePosition.start) ...[
+            const VerticalDivider(thickness: 0.7, width: 0),
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: SizedBox(
@@ -127,6 +129,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                 child: _yTitles,
               ),
             ),
+          ],
         ],
       ),
     );
@@ -212,8 +215,12 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
         : widget.data.y2Values!.length - 1 >= x
             ? widget.data.y2Values![x]
             : 0;
+
     final double barHeightByMaxY = widget.data.maxY > 0
-        ? widget.decoration.barMaxHeight / widget.data.maxY
+        ? (widget.data.y2Values == null
+                ? widget.decoration.singleBarMaxHeight + 5
+                : widget.decoration.doubleBarMaxHeight) /
+            widget.data.maxY
         : 0;
 
     final double yHeight = barHeightByMaxY * yValue;

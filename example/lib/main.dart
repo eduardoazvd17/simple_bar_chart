@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
                   const Text('With single y values'),
                   SimpleBarChartWidget(
                     decoration: const SimpleBarChartDecoration(
+                      titleDecoration: SimpleBarChartTitleDecoration(
+                        fixedYTitles: true,
+                        yTitlePosition: YTitlePosition.start,
+                      ),
                       singleBarPosition: SingleBarWidgetPosition.bottom,
                     ),
                     data: SimpleBarChartData(

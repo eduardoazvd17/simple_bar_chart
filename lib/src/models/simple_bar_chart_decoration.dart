@@ -9,7 +9,8 @@ class SimpleBarChartDecoration {
   final SimpleBarChartTooltipDecoration tooltipDecoration;
   final SimpleBarChartBarDecoration barDecoration;
 
-  double get barMaxHeight => (height / 2) - titleDecoration.xHeightSpace;
+  double get singleBarMaxHeight => height - (titleDecoration.xHeightSpace * 2);
+  double get doubleBarMaxHeight => (height / 2) - titleDecoration.xHeightSpace;
 
   const SimpleBarChartDecoration({
     this.height = 300,
@@ -20,5 +21,3 @@ class SimpleBarChartDecoration {
     this.barDecoration = const SimpleBarChartBarDecoration(),
   });
 }
-
-
