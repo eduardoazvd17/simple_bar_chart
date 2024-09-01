@@ -45,11 +45,11 @@ SimpleBarChartWidget(
 Control the overall layout of the chart, including height, titles, bars, and tooltips:
 ```dart
 SimpleBarChartWidget(
-    decoration: SimpleBarChartDecoration(
+    decoration: SbcDecoration(
         height: 300.0, 
         showScrollbar: true, 
-        singleBarPosition: SingleBarWidgetPosition.bottom, // Default value
-        titleDecoration: SimpleBarChartTitleDecoration(
+        singleBarPosition: SingleBarPosition.bottom, // Default value
+        titleDecoration: SbcTitleDecoration(
             xHeightSpace: 40.0,
             xWidthSpace: 35.0,
             showYTitles: true,
@@ -57,7 +57,7 @@ SimpleBarChartWidget(
             fixedYTitles: false,
             yTitlePosition: YTitlePosition.both,
         ),
-        tooltipDecoration: SimpleBarChartTooltipDecoration(
+        tooltipDecoration: SbcTooltipDecoration(
             backgroundColor: null,
             triggerMode: TooltipTriggerMode.tap,
             waitDuration: Duration.zero,
@@ -65,14 +65,14 @@ SimpleBarChartWidget(
             yTextFormatter: null,
             y2TextFormatter: null,
         ),
-        barDecoration: SimpleBarChartBarDecoration(
+        barDecoration: SbcBarDecoration(
             barWidth: 15.0,
             showAsProgress: true,
             yColor: null,
             y2Color: null,
         ),
     ),
-    data: SimpleBarChartData(
+    data: SbcData(
         xValues: List.generate(100, (index) => index),
         yValues: List.generate(
             100, (index) => Random().nextDouble() * 256),
