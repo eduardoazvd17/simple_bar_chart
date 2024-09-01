@@ -1,7 +1,5 @@
 library simple_bar_chart;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'models/simple_bar_chart_data.dart';
+export 'models/simple_bar_chart_decoration.dart';
+export 'widgets/simple_bar_chart_widget.dart';
