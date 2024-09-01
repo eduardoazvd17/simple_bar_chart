@@ -13,7 +13,7 @@ class SimpleBarChartDecoration {
   const SimpleBarChartDecoration({
     this.height = 300,
     this.showScrollbar = true,
-    this.singleBarPosition = SingleBarWidgetPosition.top,
+    this.singleBarPosition = SingleBarWidgetPosition.bottom,
     this.titleDecoration = const SimpleBarChartTitleDecoration(),
     this.tooltipDecoration = const SimpleBarChartTooltipDecoration(),
     this.barDecoration = const SimpleBarChartBarDecoration(),
