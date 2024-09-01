@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../enums/enums.dart';
 import '../models/models.dart';
 
 class SimpleBarChartWidget extends StatefulWidget {
@@ -51,46 +52,82 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.decoration.height,
-      child: Scrollbar(
-        thumbVisibility: widget.decoration.showScrollbar,
-        controller: widget.scrollController ?? _scrollController,
-        child: SingleChildScrollView(
-          controller: widget.scrollController ?? _scrollController,
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-            child: Row(
-              children: [
-                if (widget.decoration.titleDecoration.showYTitles)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: SizedBox(
-                      height: widget.decoration.height - 30,
-                      child: _yTitles,
-                    ),
-                  ),
-                Row(
-                  children: widget.data.xValues
-                      .map(
-                        (x) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 1),
-                          child: _chartWidget(x),
+      child: Row(
+        children: [
+          if (widget.decoration.titleDecoration.showYTitles &&
+              widget.decoration.titleDecoration.fixedYTitles &&
+              widget.decoration.titleDecoration.yTitlePosition !=
+                  YTitlePosition.end)
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: SizedBox(
+                height: widget.decoration.height - 30,
+                child: _yTitles,
+              ),
+            ),
+          Expanded(
+            child: Scrollbar(
+              thumbVisibility: widget.decoration.showScrollbar,
+              controller: widget.scrollController ?? _scrollController,
+              child: SingleChildScrollView(
+                controller: widget.scrollController ?? _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  child: Row(
+                    children: [
+                      if (widget.decoration.titleDecoration.showYTitles &&
+                          !widget.decoration.titleDecoration.fixedYTitles &&
+                          widget.decoration.titleDecoration.yTitlePosition !=
+                              YTitlePosition.end)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: SizedBox(
+                            height: widget.decoration.height - 30,
+                            child: _yTitles,
+                          ),
                         ),
-                      )
-                      .toList(),
-                ),
-                if (widget.decoration.titleDecoration.showYTitles)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: SizedBox(
-                      height: widget.decoration.height - 30,
-                      child: _yTitles,
-                    ),
+                      Row(
+                        children: widget.data.xValues
+                            .map(
+                              (x) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 1),
+                                child: _chartWidget(x),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      if (widget.decoration.titleDecoration.showYTitles &&
+                          !widget.decoration.titleDecoration.fixedYTitles &&
+                          widget.decoration.titleDecoration.yTitlePosition !=
+                              YTitlePosition.start)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: SizedBox(
+                            height: widget.decoration.height - 30,
+                            child: _yTitles,
+                          ),
+                        ),
+                    ],
                   ),
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+          if (widget.decoration.titleDecoration.showYTitles &&
+              widget.decoration.titleDecoration.fixedYTitles &&
+              widget.decoration.titleDecoration.yTitlePosition !=
+                  YTitlePosition.start)
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: SizedBox(
+                height: widget.decoration.height - 30,
+                child: _yTitles,
+              ),
+            ),
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import '../enums/enums.dart';
 import 'models.dart';
 
 class SimpleBarChartDecoration {
@@ -20,7 +21,4 @@ class SimpleBarChartDecoration {
   });
 }
 
-enum SingleBarWidgetPosition {
-  top,
-  bottom,
-}
+
