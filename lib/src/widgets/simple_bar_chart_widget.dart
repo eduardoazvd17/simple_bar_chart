@@ -140,7 +140,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
       height: widget.decoration.titleDecoration.xHeightSpace,
       width: showLabel
           ? widget.decoration.titleDecoration.xWidthSpace
-          : widget.decoration.barDecoration.barWidth,
+          : widget.decoration.barDecoration.width,
       child: Column(
         children: [
           const Divider(height: 0),
@@ -300,7 +300,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                 top: position == _BarWidgetPosition.top ? 5 : 0,
                 bottom: position == _BarWidgetPosition.bottom ? 5 : 0,
                 child: Container(
-                  width: widget.decoration.barDecoration.barWidth,
+                  width: widget.decoration.barDecoration.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: position == _BarWidgetPosition.top
@@ -328,7 +328,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                     const Expanded(child: SizedBox()),
                   Container(
                     height: yHeight,
-                    width: widget.decoration.barDecoration.barWidth,
+                    width: widget.decoration.barDecoration.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: position == _BarWidgetPosition.top
