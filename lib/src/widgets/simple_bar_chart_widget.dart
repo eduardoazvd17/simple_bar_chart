@@ -272,7 +272,11 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
     required _BarWidgetPosition position,
   }) {
     return Tooltip(
-      message: "$y ($x min)",
+      message: (position == _BarWidgetPosition.top
+              ? widget.decoration.tooltipDecoration.yTextFormatter?.call(x, y)
+              : widget.decoration.tooltipDecoration.y2TextFormatter
+                  ?.call(x, y)) ??
+          "${_formatYTitle(y)} ($x)",
       triggerMode: widget.decoration.tooltipDecoration.triggerMode,
       waitDuration: widget.decoration.tooltipDecoration.waitDuration,
       padding: widget.decoration.tooltipDecoration.padding,
