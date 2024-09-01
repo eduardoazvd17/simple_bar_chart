@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 import '../enums/enums.dart';
 import '../models/models.dart';
 
+/// A widget that displays a simple bar chart with customizable decorations.
 class SimpleBarChartWidget extends StatefulWidget {
-  final SimpleBarChartData data;
-  final SimpleBarChartDecoration decoration;
+  /// The data used to generate the bar chart.
+  final SbcData data;
+
+  /// The decoration settings for the bar chart.
+  final SbcDecoration decoration;
+
+  /// Optional scroll controller for the horizontal scroll view.
   final ScrollController? scrollController;
   const SimpleBarChartWidget({
     super.key,
     required this.data,
-    this.decoration = const SimpleBarChartDecoration(),
+    this.decoration = const SbcDecoration(),
     this.scrollController,
   });
 
@@ -162,8 +168,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: widget.data.y2Values == null
           ? [
-              if (widget.decoration.singleBarPosition ==
-                  SingleBarWidgetPosition.top)
+              if (widget.decoration.singleBarPosition == SingleBarPosition.top)
                 SizedBox(
                   height: widget.decoration.titleDecoration.xHeightSpace - 10,
                 ),
@@ -172,19 +177,19 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(widget.decoration.singleBarPosition ==
-                            SingleBarWidgetPosition.bottom
+                            SingleBarPosition.bottom
                         ? maxString
                         : minString),
                     Text(midString),
                     Text(widget.decoration.singleBarPosition ==
-                            SingleBarWidgetPosition.top
+                            SingleBarPosition.top
                         ? maxString
                         : minString),
                   ],
                 ),
               ),
               if (widget.decoration.singleBarPosition ==
-                  SingleBarWidgetPosition.bottom)
+                  SingleBarPosition.bottom)
                 SizedBox(
                   height: widget.decoration.titleDecoration.xHeightSpace - 10,
                 ),
@@ -229,7 +234,7 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
     return Column(
       children: [
         if (widget.data.y2Values == null &&
-            widget.decoration.singleBarPosition == SingleBarWidgetPosition.top)
+            widget.decoration.singleBarPosition == SingleBarPosition.top)
           _xTitle(x, showLabel),
         Expanded(
           child: _barWidget(
@@ -240,15 +245,14 @@ class _SimpleBarChartWidgetState extends State<SimpleBarChartWidget> {
                 Theme.of(context).primaryColor,
             position: widget.data.y2Values == null
                 ? switch (widget.decoration.singleBarPosition) {
-                    SingleBarWidgetPosition.top => _BarWidgetPosition.bottom,
-                    SingleBarWidgetPosition.bottom => _BarWidgetPosition.top,
+                    SingleBarPosition.top => _BarWidgetPosition.bottom,
+                    SingleBarPosition.bottom => _BarWidgetPosition.top,
                   }
                 : _BarWidgetPosition.top,
           ),
         ),
         if (widget.data.y2Values != null ||
-            widget.decoration.singleBarPosition ==
-                SingleBarWidgetPosition.bottom)
+            widget.decoration.singleBarPosition == SingleBarPosition.bottom)
           _xTitle(x, showLabel),
         if (y2Value != null && y2Height != null)
           Expanded(

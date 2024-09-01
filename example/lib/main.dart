@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
                 children: [
                   const Text('With single y values'),
                   SimpleBarChartWidget(
-                    data: SimpleBarChartData(
+                    data: SbcData(
                       xValues: List.generate(100, (index) => index),
                       yValues: List.generate(
                           100, (index) => Random().nextDouble() * 256),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                   const Divider(height: 100),
                   const Text('With double y values'),
                   SimpleBarChartWidget(
-                    data: SimpleBarChartData(
+                    data: SbcData(
                       xValues: List.generate(100, (index) => index),
                       yValues: List.generate(
                           100, (index) => Random().nextDouble() * 256),

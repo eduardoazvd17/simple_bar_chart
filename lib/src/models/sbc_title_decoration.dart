@@ -1,6 +1,7 @@
 import 'package:simple_bar_chart/src/enums/y_title_position.dart';
 
-class SimpleBarChartTitleDecoration {
+/// Title decoration settings for the bar chart.
+class SbcTitleDecoration {
   final double xHeightSpace;
   final double xWidthSpace;
   final bool showYTitles;
@@ -8,7 +9,7 @@ class SimpleBarChartTitleDecoration {
   final bool fixedYTitles;
   final YTitlePosition yTitlePosition;
 
-  const SimpleBarChartTitleDecoration({
+  const SbcTitleDecoration({
     this.xHeightSpace = 40,
     this.xWidthSpace = 35,
     this.showYTitles = true,

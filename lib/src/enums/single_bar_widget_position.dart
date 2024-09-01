@@ -1,4 +1,0 @@
-enum SingleBarWidgetPosition {
-  top,
-  bottom,
-}

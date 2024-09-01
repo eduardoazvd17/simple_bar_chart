@@ -1,6 +1,7 @@
 import 'dart:math';
 
-class SimpleBarChartData {
+/// Data model for the bar chart.
+class SbcData {
   final List<int> xValues;
   final List<double> yValues;
   final List<double>? y2Values;
@@ -12,7 +13,7 @@ class SimpleBarChartData {
   int get minX => xValues.reduce(min);
   int get maxX => xValues.reduce(max);
 
-  const SimpleBarChartData({
+  const SbcData({
     required this.xValues,
     required this.yValues,
     this.y2Values,

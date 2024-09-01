@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SimpleBarChartBarDecoration {
+/// Bars decoration settings for the bar chart.
+class SbcBarDecoration {
   final double width;
   final bool showAsProgress;
   final Color? yColor;
   final Color? y2Color;
 
-  const SimpleBarChartBarDecoration({
+  const SbcBarDecoration({
     this.width = 15,
     this.showAsProgress = true,
     this.yColor,

@@ -1,0 +1,4 @@
+enum SingleBarPosition {
+  top,
+  bottom,
+}

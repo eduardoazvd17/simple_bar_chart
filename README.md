@@ -20,7 +20,7 @@ Add `simple_bar_chart` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  simple_bar_chart: ^1.0.0
+  simple_bar_chart: ^0.0.1
 ```
 
 ## 🛠️ Usage

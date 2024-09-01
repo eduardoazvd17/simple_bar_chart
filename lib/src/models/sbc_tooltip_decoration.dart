@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SimpleBarChartTooltipDecoration {
+/// Tooltip decoration settings for the bar chart.
+class SbcTooltipDecoration {
   final Color? backgroundColor;
   final TooltipTriggerMode triggerMode;
   final Duration waitDuration;
@@ -8,7 +9,7 @@ class SimpleBarChartTooltipDecoration {
   final String Function(int x, double y)? yTextFormatter;
   final String Function(int x, double y)? y2TextFormatter;
 
-  const SimpleBarChartTooltipDecoration({
+  const SbcTooltipDecoration({
     this.backgroundColor,
     this.triggerMode = TooltipTriggerMode.tap,
     this.waitDuration = Duration.zero,
