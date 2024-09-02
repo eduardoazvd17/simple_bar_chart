@@ -129,7 +129,7 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
                   YTitlePosition.start) ...[
             const VerticalDivider(thickness: 0.7, width: 0),
             Padding(
-              padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(left: 20),
               child: SizedBox(
                 height: widget.decoration.height - 30,
                 child: _yTitles,
@@ -289,7 +289,8 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
         color: color,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: widget.decoration.tooltipDecoration.backgroundColor ??
+            Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(
           widget.decoration.tooltipDecoration.borderRadius,
         ),
