@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Fixing paddings
+
 ## 0.0.3
 
 * Fixing fixed end y title padding;

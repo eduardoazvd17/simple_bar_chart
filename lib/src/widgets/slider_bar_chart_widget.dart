@@ -129,7 +129,7 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
                   YTitlePosition.start) ...[
             const VerticalDivider(thickness: 0.7, width: 0),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: SizedBox(
                 height: widget.decoration.height - 30,
                 child: _yTitles,
