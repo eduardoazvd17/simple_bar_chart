@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Using FittedBox to fit xTitle text inside desired space.
+
 ## 0.0.4
 
 * Fixing paddings
