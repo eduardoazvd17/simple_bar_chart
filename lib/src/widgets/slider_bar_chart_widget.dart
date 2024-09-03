@@ -151,7 +151,13 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
         children: [
           const Divider(height: 0),
           Expanded(
-            child: showLabel ? Center(child: Text('$x')) : const SizedBox(),
+            child: showLabel
+                ? Center(
+                    child: FittedBox(
+                      child: Text('$x'),
+                    ),
+                  )
+                : const SizedBox(),
           ),
           if (widget.data.y2Values != null) const Divider(height: 0),
         ],
@@ -176,15 +182,19 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(widget.decoration.singleBarPosition ==
-                            SingleBarPosition.bottom
-                        ? maxString
-                        : minString),
+                    Text(
+                      widget.decoration.singleBarPosition ==
+                              SingleBarPosition.bottom
+                          ? maxString
+                          : minString,
+                    ),
                     Text(midString),
-                    Text(widget.decoration.singleBarPosition ==
-                            SingleBarPosition.top
-                        ? maxString
-                        : minString),
+                    Text(
+                      widget.decoration.singleBarPosition ==
+                              SingleBarPosition.top
+                          ? maxString
+                          : minString,
+                    ),
                   ],
                 ),
               ),
@@ -231,40 +241,45 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
     final double yHeight = barHeightByMaxY * yValue;
     final double? y2Height = y2Value == null ? null : barHeightByMaxY * y2Value;
 
-    return Column(
-      children: [
-        if (widget.data.y2Values == null &&
-            widget.decoration.singleBarPosition == SingleBarPosition.top)
-          _xTitle(x, showLabel),
-        Expanded(
-          child: _barWidget(
-            x: x,
-            y: yValue,
-            yHeight: yHeight,
-            color: widget.decoration.barDecoration.yColor ??
-                Theme.of(context).primaryColor,
-            position: widget.data.y2Values == null
-                ? switch (widget.decoration.singleBarPosition) {
-                    SingleBarPosition.top => _BarWidgetPosition.bottom,
-                    SingleBarPosition.bottom => _BarWidgetPosition.top,
-                  }
-                : _BarWidgetPosition.top,
-          ),
-        ),
-        if (widget.data.y2Values != null ||
-            widget.decoration.singleBarPosition == SingleBarPosition.bottom)
-          _xTitle(x, showLabel),
-        if (y2Value != null && y2Height != null)
+    return SizedBox(
+      width: showLabel
+          ? widget.decoration.titleDecoration.xWidthSpace
+          : widget.decoration.barDecoration.width,
+      child: Column(
+        children: [
+          if (widget.data.y2Values == null &&
+              widget.decoration.singleBarPosition == SingleBarPosition.top)
+            _xTitle(x, showLabel),
           Expanded(
             child: _barWidget(
               x: x,
-              y: y2Value,
-              yHeight: y2Height,
-              color: Theme.of(context).colorScheme.secondary,
-              position: _BarWidgetPosition.bottom,
+              y: yValue,
+              yHeight: yHeight,
+              color: widget.decoration.barDecoration.yColor ??
+                  Theme.of(context).primaryColor,
+              position: widget.data.y2Values == null
+                  ? switch (widget.decoration.singleBarPosition) {
+                      SingleBarPosition.top => _BarWidgetPosition.bottom,
+                      SingleBarPosition.bottom => _BarWidgetPosition.top,
+                    }
+                  : _BarWidgetPosition.top,
             ),
           ),
-      ],
+          if (widget.data.y2Values != null ||
+              widget.decoration.singleBarPosition == SingleBarPosition.bottom)
+            _xTitle(x, showLabel),
+          if (y2Value != null && y2Height != null)
+            Expanded(
+              child: _barWidget(
+                x: x,
+                y: y2Value,
+                yHeight: y2Height,
+                color: Theme.of(context).colorScheme.secondary,
+                position: _BarWidgetPosition.bottom,
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -275,64 +290,38 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
     required Color color,
     required _BarWidgetPosition position,
   }) {
-    return Tooltip(
-      message: (position == _BarWidgetPosition.top
-              ? widget.decoration.tooltipDecoration.yTextFormatter?.call(x, y)
-              : widget.decoration.tooltipDecoration.y2TextFormatter
-                  ?.call(x, y)) ??
-          "${_formatYTitle(y)} ($x)",
-      triggerMode: widget.decoration.tooltipDecoration.triggerMode,
-      waitDuration: widget.decoration.tooltipDecoration.waitDuration,
-      padding: widget.decoration.tooltipDecoration.padding,
-      textStyle: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: color,
-      ),
-      decoration: BoxDecoration(
-        color: widget.decoration.tooltipDecoration.backgroundColor ??
-            Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(
-          widget.decoration.tooltipDecoration.borderRadius,
+    return SizedBox(
+      width: widget.decoration.barDecoration.width,
+      child: Tooltip(
+        message: (position == _BarWidgetPosition.top
+                ? widget.decoration.tooltipDecoration.yTextFormatter?.call(x, y)
+                : widget.decoration.tooltipDecoration.y2TextFormatter
+                    ?.call(x, y)) ??
+            "${_formatYTitle(y)} ($x)",
+        triggerMode: widget.decoration.tooltipDecoration.triggerMode,
+        waitDuration: widget.decoration.tooltipDecoration.waitDuration,
+        padding: widget.decoration.tooltipDecoration.padding,
+        textStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: color,
         ),
-        border: widget.decoration.tooltipDecoration.border,
-      ),
-      child: AnimatedSize(
-        duration: const Duration(milliseconds: 300),
-        child: Stack(
-          children: [
-            if (widget.decoration.barDecoration.showAsProgress)
-              Positioned(
-                top: position == _BarWidgetPosition.top ? 5 : 0,
-                bottom: position == _BarWidgetPosition.bottom ? 5 : 0,
-                child: Container(
-                  width: widget.decoration.barDecoration.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: position == _BarWidgetPosition.top
-                          ? const Radius.circular(14)
-                          : Radius.zero,
-                      topRight: position == _BarWidgetPosition.top
-                          ? const Radius.circular(14)
-                          : Radius.zero,
-                      bottomLeft: position == _BarWidgetPosition.bottom
-                          ? const Radius.circular(14)
-                          : Radius.zero,
-                      bottomRight: position == _BarWidgetPosition.bottom
-                          ? const Radius.circular(14)
-                          : Radius.zero,
-                    ),
-                    color: Colors.grey.withAlpha(30),
-                  ),
-                ),
-              ),
-            AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              child: Column(
-                children: [
-                  if (position == _BarWidgetPosition.top)
-                    const Expanded(child: SizedBox()),
-                  Container(
-                    height: yHeight,
+        decoration: BoxDecoration(
+          color: widget.decoration.tooltipDecoration.backgroundColor ??
+              Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(
+            widget.decoration.tooltipDecoration.borderRadius,
+          ),
+          border: widget.decoration.tooltipDecoration.border,
+        ),
+        child: AnimatedSize(
+          duration: const Duration(milliseconds: 300),
+          child: Stack(
+            children: [
+              if (widget.decoration.barDecoration.showAsProgress)
+                Positioned(
+                  top: position == _BarWidgetPosition.top ? 5 : 0,
+                  bottom: position == _BarWidgetPosition.bottom ? 5 : 0,
+                  child: Container(
                     width: widget.decoration.barDecoration.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -349,15 +338,44 @@ class _SliderBarChartWidgetState extends State<SliderBarChartWidget> {
                             ? const Radius.circular(14)
                             : Radius.zero,
                       ),
-                      color: color,
+                      color: Colors.grey.withAlpha(30),
                     ),
                   ),
-                  if (position == _BarWidgetPosition.bottom)
-                    const Expanded(child: SizedBox()),
-                ],
+                ),
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                child: Column(
+                  children: [
+                    if (position == _BarWidgetPosition.top)
+                      const Expanded(child: SizedBox()),
+                    Container(
+                      height: yHeight,
+                      width: widget.decoration.barDecoration.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: position == _BarWidgetPosition.top
+                              ? const Radius.circular(14)
+                              : Radius.zero,
+                          topRight: position == _BarWidgetPosition.top
+                              ? const Radius.circular(14)
+                              : Radius.zero,
+                          bottomLeft: position == _BarWidgetPosition.bottom
+                              ? const Radius.circular(14)
+                              : Radius.zero,
+                          bottomRight: position == _BarWidgetPosition.bottom
+                              ? const Radius.circular(14)
+                              : Radius.zero,
+                        ),
+                        color: color,
+                      ),
+                    ),
+                    if (position == _BarWidgetPosition.bottom)
+                      const Expanded(child: SizedBox()),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
